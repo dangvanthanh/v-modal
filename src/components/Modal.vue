@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" v-if="isShow">
+  <div class="modal" v-show="isShow">
     <div class="modal-wrapper">
       <div class="modal-container">
         <div class="modal-header">
@@ -25,12 +25,16 @@ export default {
       required: true
     }
   },
-  created () {
-    window.addEventListener('keydown', (e) => {
+  mounted () {
+    let self = this
+    window.addEventListener('keydown', self.hideModal) 
+  },
+  methods: {
+    hideModal (e) {
       if (e.keyCode == 27 && this.isShow) {
-        this.isShow = false
+        this.$emit('close')
       }
-    })
+    }
   }
 }
 </script>

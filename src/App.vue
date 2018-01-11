@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <button @click="showModal">Open Modal</button>
-    <modal :isShow="isShow"></modal>
+    <modal :isShow.sync="isShow" @close="isShow = false"></modal>
   </div>
 </template>
 
