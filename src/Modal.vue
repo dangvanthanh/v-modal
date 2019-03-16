@@ -1,15 +1,11 @@
 <template>
-  <div class="modal" v-show="isShow">
-    <div class="modal-wrapper">
-      <div class="modal-container">
-        <div class="modal-header">
-          <slot name="header">Header</slot>
-        </div>
-        <div class="modal-content">
-          <slot name="content">Body</slot>
-        </div>
-        <div class="modal-footer">
-          <slot name="footer">Footer</slot>
+  <div aria-hidden="true" v-show="isShow">
+    <div tabindex="-1">
+      <div role="dialog" aria-modal="true" aria-labelledby="">
+        <header>
+          <button aria-label="Close modal"></button>
+        </header>
+        <div>
         </div>
       </div>
     </div>
@@ -25,9 +21,9 @@ export default {
       required: true
     }
   },
-  mounted () {
+  created () {
     let self = this
-    window.addEventListener('keydown', self.hideModal) 
+    window.addEventListener('keydown', self.hideModal)
   },
   methods: {
     hideModal (e) {
@@ -40,25 +36,4 @@ export default {
 </script>
 
 <style>
-.modal {
-  background: rgba(0, 0, 0, .3);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: table;
-}
-
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.modal-container {
-  background-color: #fff;
-  width: 300px;
-  padding: 15px;
-  margin: 0 auto;
-}
 </style>
